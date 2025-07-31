@@ -1,33 +1,37 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.GoogleHomePage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GoogleTest {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private GoogleHomePage google;
 
     @BeforeEach
     void setUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/sabinajuhasova/Desktop/chromedriver");
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        google = new GoogleHomePage(driver);
     }
 
     @Test
     void testGoogleTitle() {
-        driver.get("https://www.google.com");
-        String title = driver.getTitle();
+        google.open();
+        String title = google.getTitle();
         System.out.println("Title is: " + title);
         assertTrue(title.contains("Google"));
     }
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
