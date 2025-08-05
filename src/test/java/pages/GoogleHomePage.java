@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class GoogleHomePage extends BasePage {
 
-    private By searchBox = By.name("q");
+    private final By searchBox = By.name("q");
 
     public GoogleHomePage(WebDriver driver) {
         super(driver);

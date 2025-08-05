@@ -6,7 +6,11 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
-    private By signupLoginLink = By.xpath("//a[contains(text(),'Signup / Login')]");
+    private final By signupLoginLink = By.xpath("//a[contains(text(),'Signup / Login')]");
+
+    private final By homeLink = By.xpath("//a[contains(text(),'Home')]");
+
+    private final By productLink = By.xpath("//a[contains(text(),'Products')]");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -16,13 +20,15 @@ public class HomePage extends BasePage {
         driver.get("https://automationexercise.com/");
     }
 
-    public void removeOverlays() {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("let overlay = document.querySelector('.fc-dialog-overlay'); if (overlay) overlay.remove();");
-        js.executeScript("let root = document.querySelector('.fc-consent-root'); if (root) root.remove();");
+    public boolean isHomeVisible() {
+        return driver.findElement(homeLink).isDisplayed();
     }
 
     public void clickSignupLogin() {
         click(signupLoginLink);
+    }
+
+    public void clickProducts() {
+        click(productLink);
     }
 }
