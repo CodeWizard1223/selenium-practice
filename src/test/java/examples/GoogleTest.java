@@ -1,9 +1,8 @@
-package tests;
+package examples;
 
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.GoogleHomePage;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
